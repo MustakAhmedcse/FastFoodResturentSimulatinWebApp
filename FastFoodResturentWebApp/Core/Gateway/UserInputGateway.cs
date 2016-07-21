@@ -10,8 +10,6 @@ namespace FastFoodResturentWebApp.Core.Gateway
     {
         public int Insert(UserInput userInput)
         {
-            //  Query = "UPDATE UserInput_Table SET(" + userInput.CalculateTime + "," + userInput.InterArrivalTime + "," + userInput.ServiceTime + ") WHERE "userInput.Id"";
-
             Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + ",InterArrivalTime=" + userInput.InterArrivalTime + ",ServiceTime=" + userInput.ServiceTime + " WHERE Id=1";
             Command.CommandText = Query;
             Connection.Open();

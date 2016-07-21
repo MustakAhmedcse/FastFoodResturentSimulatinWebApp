@@ -165,9 +165,11 @@
     <Compile Include="Controllers\UserInputController.cs" />
     <Compile Include="Core\Gateway\Gateway.cs" />
     <Compile Include="Core\Gateway\InterArrivalTimeMatchGateway.cs" />
+    <Compile Include="Core\Gateway\RandomDegitGateway.cs" />
     <Compile Include="Core\Gateway\ServiceTiemMatchGateway.cs" />
     <Compile Include="Core\Gateway\UserInputGateway.cs" />
     <Compile Include="Core\Manager\InterArrivalTimeMatchManager.cs" />
+    <Compile Include="Core\Manager\RandomDegitManager.cs" />
     <Compile Include="Core\Manager\ServiceTimeMatchManager.cs" />
     <Compile Include="Core\Manager\UserInputManager.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,7 +178,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InterArrivalTimeMatch.cs" />
+    <Compile Include="Models\InterArrivalTimeRandomDegit.cs" />
     <Compile Include="Models\ServiceTiemMatch.cs" />
+    <Compile Include="Models\ServiceTimeRandomDegit.cs" />
     <Compile Include="Models\UserInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
