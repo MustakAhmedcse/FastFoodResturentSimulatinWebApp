@@ -19,5 +19,25 @@ namespace FastFoodResturentWebApp.Core.Gateway
             Connection.Close();
             return rowAffected;
         }
+
+        public List<InterArrivalTimeMatch> GetAllInterArrivalTimes()
+        {
+            List<InterArrivalTimeMatch> interArrivalTimeMatches=new List<InterArrivalTimeMatch>();
+            Query = "SELECT * FROM InterArrivalTimeMatch_Table";
+            Command.CommandText = Query;
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                InterArrivalTimeMatch interArrivalTimeMatch=new InterArrivalTimeMatch();
+                interArrivalTimeMatch.InterArrivalTime = Convert.ToInt32(Reader["InterArrivalTime"]);
+                interArrivalTimeMatch.MinRange = Convert.ToInt32(Reader["MinRange"]);
+                interArrivalTimeMatch.MaxRange = Convert.ToInt32(Reader["MaxRange"]);
+                interArrivalTimeMatches.Add(interArrivalTimeMatch);
+            }
+            Reader.Close();
+            Connection.Close();
+            return interArrivalTimeMatches;
+        }
     }
 }

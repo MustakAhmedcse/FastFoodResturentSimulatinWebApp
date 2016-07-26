@@ -7,6 +7,6 @@ namespace FastFoodResturentWebApp.Core.Gateway
 {
     public class RandomDegitGateway
     {
-
+       
     }
 }

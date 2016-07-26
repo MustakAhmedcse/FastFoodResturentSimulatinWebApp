@@ -17,5 +17,24 @@ namespace FastFoodResturentWebApp.Core.Gateway
             Connection.Close();
             return rowAffected;
         }
+        public List<ServiceTiemMatch> GetAllServiceTimes()
+        {
+            List<ServiceTiemMatch> interArrivalTimeMatches = new List<ServiceTiemMatch>();
+            Query = "SELECT * FROM ServiceTimeMatch_Table";
+            Command.CommandText = Query;
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                ServiceTiemMatch serviceTiemMatch = new ServiceTiemMatch();
+                serviceTiemMatch.ServiceTiem = Convert.ToInt32(Reader["ServiceTime"]);
+                serviceTiemMatch.MinRange = Convert.ToInt32(Reader["MinRange"]);
+                serviceTiemMatch.MaxRange = Convert.ToInt32(Reader["MaxRange"]);
+                interArrivalTimeMatches.Add(serviceTiemMatch);
+            }
+            Reader.Close();
+            Connection.Close();
+            return interArrivalTimeMatches;
+        }
     }
 }

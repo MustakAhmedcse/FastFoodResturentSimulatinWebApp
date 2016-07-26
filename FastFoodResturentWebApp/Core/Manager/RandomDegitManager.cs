@@ -7,5 +7,6 @@ namespace FastFoodResturentWebApp.Core.Manager
 {
     public class RandomDegitManager
     {
+       
     }
 }
