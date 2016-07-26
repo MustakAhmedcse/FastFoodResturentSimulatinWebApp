@@ -10,7 +10,8 @@ namespace FastFoodResturentWebApp.Core.Gateway
     {
         public int Insert(UserInput userInput)
         {
-            Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + ",InterArrivalTime=" + userInput.InterArrivalTime + ",ServiceTime=" + userInput.ServiceTime + " WHERE Id=1";
+            //Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + ",InterArrivalTime=" + userInput.InterArrivalTime + ",ServiceTime=" + userInput.ServiceTime + " WHERE Id=1";
+            Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + " WHERE Id=1";
             Command.CommandText = Query;
             Connection.Open();
             int rowAffected = Command.ExecuteNonQuery();
@@ -76,22 +77,23 @@ namespace FastFoodResturentWebApp.Core.Gateway
             Connection.Open();
             Command.ExecuteNonQuery();
             Connection.Close();
-            
-           
+            CreatNewFinalResultTable();
+        }
 
-            //Query = "CREATE TABLE FinalREsult_Table 
-            //        (Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-            //         InterArrivalTime int,
-            //        ArrivalTime int,
-            //         ServiceTime int,
-            //        ServiceStartTime int,
-            //        ServiceEndTime int,
-            //    )";
-            //Query = "CREATE TABLE FinalResult_Table (Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,InterArrivalTime int,ArrivalTime int,ServiceTime int,ServiceStartTime int,ServiceEndTime int) ";
-            //Command.CommandText = Query;
-            //Connection.Open();
-            //Command.ExecuteNonQuery();
-            //Connection.Close();
+        private void CreatNewFinalResultTable()
+        {
+            Query = "CREATE TABLE FinalResult_Table (" +
+                    "Id int IDENTITY(1,1) PRIMARY KEY NOT NULL," +
+                    "InterArrivalTime int," +
+                    "ArrivalTime int," +
+                    "ServiceTime int," +
+                    "ServiceStartTime int," +
+                    "ServiceEndTime int" +
+                    ") ";
+            Command.CommandText = Query;
+            Connection.Open();
+            Command.ExecuteNonQuery();
+            Connection.Close();
         }
     }
 }

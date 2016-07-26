@@ -97,11 +97,11 @@ namespace FastFoodResturentWebApp.Core.Manager
 
         public void CalculateFinalResult(int calculateTime)
         {
-            //if ((clock) == 0)
-            //{
-            //    userInputGateway.DedeteFinalResultTable();
-            //}
-            for (int i = clock; i < calculateTime; i++)
+            if ((clock) == 0)
+            {
+                userInputGateway.DedeteFinalResultTable();
+            }
+            while ( clock< calculateTime)
             {
                 FinalResult finalResult = new FinalResult();
                 // //Final.....Inter Arrival Time...........

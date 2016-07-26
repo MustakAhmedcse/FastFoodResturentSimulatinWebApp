@@ -18,14 +18,14 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CalculateTime, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CalculateTime, new { @class = "col-sm-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CalculateTime)
+                @Html.EditorFor(model => model.CalculateTime, new { @class = "form-control", @placeholder = "Enter Time" })
                 @Html.ValidationMessageFor(model => model.CalculateTime)
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.InterArrivalTime, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.InterArrivalTime)
@@ -39,7 +39,7 @@
                 @Html.EditorFor(model => model.ServiceTime)
                 @Html.ValidationMessageFor(model => model.ServiceTime)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
