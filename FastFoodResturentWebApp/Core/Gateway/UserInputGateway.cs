@@ -87,11 +87,11 @@ namespace FastFoodResturentWebApp.Core.Gateway
             //        ServiceStartTime int,
             //        ServiceEndTime int,
             //    )";
-            Query = "CERATE TABLE FinalResult_Table (Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,InterArrivalTime int,ArrivalTime int,ServiceTime int,ServiceStartTime int,ServiceEndTime int) ";
-            Command.CommandText = Query;
-            Connection.Open();
-            Command.ExecuteNonQuery();
-            Connection.Close();
+            //Query = "CREATE TABLE FinalResult_Table (Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,InterArrivalTime int,ArrivalTime int,ServiceTime int,ServiceStartTime int,ServiceEndTime int) ";
+            //Command.CommandText = Query;
+            //Connection.Open();
+            //Command.ExecuteNonQuery();
+            //Connection.Close();
         }
     }
 }

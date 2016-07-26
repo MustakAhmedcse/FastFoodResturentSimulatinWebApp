@@ -84,11 +84,11 @@ namespace FastFoodResturentWebApp.Core.Manager
                 Random randomDegit = new Random();
                 int randomServTime = randomDegit.Next(100);
 
-                foreach (var interArrivalTimeMatch in GetAllInterArrivalTimes())
+                foreach (var serviceTimeMatch in GetAllServiceTimes())
                 {
-                    if (randomServTime >= interArrivalTimeMatch.MinRange && randomServTime <= interArrivalTimeMatch.MaxRange)
+                    if (randomServTime >= serviceTimeMatch.MinRange && randomServTime <= serviceTimeMatch.MaxRange)
                     {
-                        serviceTime = (int)interArrivalTimeMatch.InterArrivalTime;
+                        serviceTime = (int)serviceTimeMatch.ServiceTiem;
                     }
                 }
             }
@@ -97,10 +97,10 @@ namespace FastFoodResturentWebApp.Core.Manager
 
         public void CalculateFinalResult(int calculateTime)
         {
-            if ((clock) == 0)
-            {
-                userInputGateway.DedeteFinalResultTable();
-            }
+            //if ((clock) == 0)
+            //{
+            //    userInputGateway.DedeteFinalResultTable();
+            //}
             for (int i = clock; i < calculateTime; i++)
             {
                 FinalResult finalResult = new FinalResult();
@@ -110,7 +110,7 @@ namespace FastFoodResturentWebApp.Core.Manager
                 //Final.....Arrival Time...........
                 foreach (var item in GetAllFinalInfo())
                 {
-                    finalResult.ArrivalTime = item.ServiceTime + finalResult.InterArrivalTime;
+                    finalResult.ArrivalTime = item.ArrivalTime + finalResult.InterArrivalTime;
                 }
 
                 //Final.....Service Time...........
@@ -122,14 +122,23 @@ namespace FastFoodResturentWebApp.Core.Manager
                 {
                     previousServiceEndTime = item.ServiceEndTime;
                 }
-                for (int j = previousServiceEndTime; j == finalResult.ArrivalTime; j++)
+                if (previousServiceEndTime<=finalResult.ArrivalTime)
                 {
-                    previousServiceEndTime++;
+                    finalResult.ServiceStartTime = finalResult.ArrivalTime;
                 }
-                finalResult.ServiceStartTime = previousServiceEndTime;
+                else
+                {
+                    finalResult.ServiceStartTime = previousServiceEndTime;
+                }
+                //for (int j = previousServiceEndTime; j == finalResult.ArrivalTime; j++)
+                //{
+                //    previousServiceEndTime++;
+                //}
+                //finalResult.ServiceStartTime = previousServiceEndTime;
 
                 //Final.....Service End Time...........
                 finalResult.ServiceEndTime = finalResult.ServiceStartTime + finalResult.ServiceTime;
+                
                 clock = finalResult.ServiceEndTime;
 
                 //FinalRelult Save Part.....................
