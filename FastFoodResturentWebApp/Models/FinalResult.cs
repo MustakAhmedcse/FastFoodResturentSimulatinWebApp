@@ -12,6 +12,12 @@ namespace FastFoodResturentWebApp.Models
         public int ArrivalTime { get; set; }
         public int ServiceTime { get; set; }
         public int ServiceStartTime { get; set; }   
-        public int ServiceEndTime { get; set; }   
+        public int ServiceEndTime { get; set; }
+        public int WaitingTime { get; set; }
+        public int ServerIdelTime { get; set; }
+        
+
+       
+       
     }
 }

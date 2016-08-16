@@ -10,7 +10,6 @@ namespace FastFoodResturentWebApp.Core.Gateway
     {
         public int Insert(UserInput userInput)
         {
-            //Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + ",InterArrivalTime=" + userInput.InterArrivalTime + ",ServiceTime=" + userInput.ServiceTime + " WHERE Id=1";
             Query = "UPDATE UserInput_Table SET CalculateTime=" + userInput.CalculateTime + " WHERE Id=1";
             Command.CommandText = Query;
             Connection.Open();
@@ -29,9 +28,7 @@ namespace FastFoodResturentWebApp.Core.Gateway
             if (Reader.Read())
             {
                 userInput.CalculateTime = Convert.ToInt32(Reader["CalculateTime"]);
-                userInput.InterArrivalTime = Convert.ToInt32(Reader["InterArrivalTime"]);
-                userInput.ServiceTime = Convert.ToInt32(Reader["ServiceTime"]);
-
+                
             }
             Reader.Close();
             Connection.Close();
@@ -48,11 +45,15 @@ namespace FastFoodResturentWebApp.Core.Gateway
             while (Reader.Read())
             {
                 FinalResult finalResult = new FinalResult();
+                finalResult.Id = Convert.ToInt32(Reader["Id"]);
                 finalResult.InterArrivalTime = Convert.ToInt32(Reader["InterArrivalTime"]);
                 finalResult.ArrivalTime = Convert.ToInt32(Reader["ArrivalTime"]);
                 finalResult.ServiceTime = Convert.ToInt32(Reader["ServiceTime"]);
                 finalResult.ServiceStartTime = Convert.ToInt32(Reader["ServiceStartTime"]);
                 finalResult.ServiceEndTime = Convert.ToInt32(Reader["ServiceEndTime"]);
+                finalResult.WaitingTime = Convert.ToInt32(Reader["WaitingTime"]);
+                finalResult.ServerIdelTime = Convert.ToInt32(Reader["ServerIdelTime"]);
+               // finalResult.CustomerTotalSpendTime = Convert.ToInt32(Reader["CustomerTotalSpendTime"]);
                 finalResults.Add(finalResult);
             }
             Reader.Close();
@@ -62,7 +63,7 @@ namespace FastFoodResturentWebApp.Core.Gateway
 
         public void FinalResultSave(FinalResult finalResult)
         {
-            Query = "INSERT INTO FinalResult_Table VALUES (" + finalResult.InterArrivalTime + "," + finalResult.ArrivalTime + "," + finalResult.ServiceTime + "," + finalResult.ServiceStartTime + "," + finalResult.ServiceEndTime + ") ";
+            Query = "INSERT INTO FinalResult_Table VALUES (" + finalResult.InterArrivalTime + "," + finalResult.ArrivalTime + "," + finalResult.ServiceTime + "," + finalResult.ServiceStartTime + "," + finalResult.ServiceEndTime + ","+finalResult.WaitingTime+","+finalResult.ServerIdelTime+") ";
             Command.CommandText = Query;
             Connection.Open();
             Command.ExecuteNonQuery();
@@ -88,7 +89,9 @@ namespace FastFoodResturentWebApp.Core.Gateway
                     "ArrivalTime int," +
                     "ServiceTime int," +
                     "ServiceStartTime int," +
-                    "ServiceEndTime int" +
+                    "ServiceEndTime int," +
+                    "WaitingTime int," +
+                    "ServerIdelTime int" +
                     ") ";
             Command.CommandText = Query;
             Connection.Open();

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<FastFoodResturentWebApp.FinalResult_Table>
+
+@{
+    ViewBag.Title = "ReportsEverest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+<style>
+    #example {
+        text-align: center
+    }
+</style>
+<h2>Report Table</h2>
+
+<p>
+    @Html.ActionLink("Calculate New Simulation", "Index", "UserInput")
+</p>
+<p>
+    <a href="@Url.Action("ExportReport")"> Get Report in PDF</a>
+</p>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<table id="example" class="display" style="width: 100%">
+    <thead>
+        <tr>
+
+            <th>
+                Coustomer
+            </th>
+            <th>
+                Inter Arrival Time
+            </th>
+            <th>
+                Arrival Time
+            </th>
+            <th>
+                Service Time
+            </th>
+            <th>
+                Service Start Time
+            </th>
+            <th>
+                Service End Time
+            </th>
+            <th>
+                Waiting Time
+            </th>
+            <th>
+                Server Idel Time
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+{
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaitingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerIdelTime)
+            </td>
+
+        </tr>
+    </tbody>
+}
+
+</table>
+@section Scripts{
+    @*<script src="~/Scripts/jquery-3.1.0.min.js"></script>*@
+<script src="~/Scripts/jquery-3.1.0.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#example").DataTable({
+                //"paging": false,
+                //"ordering": false,
+                "info": false
+            
+        });
+        });
+    </script>
+
+}

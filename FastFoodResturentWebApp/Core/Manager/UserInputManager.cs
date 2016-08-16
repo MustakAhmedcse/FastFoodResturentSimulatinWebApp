@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
 using FastFoodResturentWebApp.Core.Gateway;
@@ -19,11 +20,11 @@ namespace FastFoodResturentWebApp.Core.Manager
         {
             if (userInputGateway.Insert(userInput) > 0)
             {
-                return "Save Successfull.";
+                return "Calculation Successfull.";
             }
             else
             {
-                return "Sory! Save Fail.";
+                return "Sory! Calculation Fail.";
             }
         }
 
@@ -104,6 +105,7 @@ namespace FastFoodResturentWebApp.Core.Manager
             while ( clock< calculateTime)
             {
                 FinalResult finalResult = new FinalResult();
+
                 // //Final.....Inter Arrival Time...........
                 finalResult.InterArrivalTime = FindInterArrivalTimeFromRandomDegit();
 
@@ -130,19 +132,38 @@ namespace FastFoodResturentWebApp.Core.Manager
                 {
                     finalResult.ServiceStartTime = previousServiceEndTime;
                 }
-                //for (int j = previousServiceEndTime; j == finalResult.ArrivalTime; j++)
-                //{
-                //    previousServiceEndTime++;
-                //}
-                //finalResult.ServiceStartTime = previousServiceEndTime;
-
+               
                 //Final.....Service End Time...........
                 finalResult.ServiceEndTime = finalResult.ServiceStartTime + finalResult.ServiceTime;
+
+                //Final.....Waiting Time..............
+                finalResult.WaitingTime = 0;
+                if (finalResult.ServiceStartTime > finalResult.ArrivalTime)
+                {
+                    finalResult.WaitingTime =finalResult.ServiceStartTime-finalResult.ArrivalTime;
+                }
+                //Final....Server Idel Time..........
+                finalResult.ServerIdelTime = 0;
+
+                if (finalResult.ArrivalTime > previousServiceEndTime)
+                {
+                    finalResult.ServerIdelTime = finalResult.ArrivalTime - previousServiceEndTime;
+                }
+
+                //Final.....Costomer Total Time Spend in queue........
+                //finalResult.CustomerTotalSpendTime =finalResult.ServiceTime+finalResult.WaitingTime;
                 
                 clock = finalResult.ServiceEndTime;
+                if (finalResult.ServiceEndTime>calculateTime)
+                {
+                    int count=0;
+                    count++;
+                    return;
+                }
 
                 //FinalRelult Save Part.....................
                 userInputGateway.FinalResultSave(finalResult);
+
             }
             
 

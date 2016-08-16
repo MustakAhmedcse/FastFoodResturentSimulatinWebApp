@@ -1,59 +1,52 @@
 ﻿@model FastFoodResturentWebApp.Models.UserInput
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Calculate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+<style>
+    .field-validation-error {
+       
+        font-style: italic;
+    }
+    #textfild {
+        font-size: 15px;
+        margin: 1%;
+        }
     
-    <div class="form-horizontal">
-        <h4>UserInput</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+</style>
+<h2>Simulation Calculate</h2>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CalculateTime, new { @class = "col-sm-2 control-label" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CalculateTime, new { @class = "form-control", @placeholder = "Enter Time" })
-                @Html.ValidationMessageFor(model => model.CalculateTime)
-            </div>
+@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" }))
+{
+    @*@Html.AntiForgeryToken()*@
+    <h4>User Input Lable</h4>
+    <hr />
+
+    <div class="row">
+        @Html.LabelFor(m => m.CalculateTime, new { @class = "col-md-4 control-label", id = "textfild" })
+        @*<div class="col-md-10">*@
+        @Html.TextBoxFor(m => m.CalculateTime, new { @class = "form-control col-md-2 " ,@placeholder="Time in Minute" })<h5 class="col-md-2" id="textfild">Minutes</h5>
+    </div>
+        @Html.ValidationMessageFor(m => m.CalculateTime)
+
+        @*</div>*@
+   
+
+
+    <div class="form-group">
+        <div class="col-md-12 col-md-offset-6" >
+            <input type="submit" class="btn btn-default" value="Calculate" />
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.InterArrivalTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InterArrivalTime)
-                @Html.ValidationMessageFor(model => model.InterArrivalTime)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ServiceTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ServiceTime)
-                @Html.ValidationMessageFor(model => model.ServiceTime)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Save</button>
-            </div>
+        <div>
             <h3>@ViewBag.message</h3>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
+
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

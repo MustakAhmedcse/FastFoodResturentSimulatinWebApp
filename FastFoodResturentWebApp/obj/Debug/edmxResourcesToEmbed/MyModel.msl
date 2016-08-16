@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FastFoodResturent_DBModelStoreContainer" CdmEntityContainer="FastFoodResturent_DBEntities2">
+    <EntitySetMapping Name="FinalResult_Table">
+      <EntityTypeMapping TypeName="FastFoodResturent_DBModel.FinalResult_Table">
+        <MappingFragment StoreEntitySet="FinalResult_Table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InterArrivalTime" ColumnName="InterArrivalTime" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+          <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+          <ScalarProperty Name="WaitingTime" ColumnName="WaitingTime" />
+          <ScalarProperty Name="ServerIdelTime" ColumnName="ServerIdelTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

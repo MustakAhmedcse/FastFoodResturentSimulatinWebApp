@@ -22,5 +22,26 @@ namespace FastFoodResturentWebApp.Core.Manager
                 return "Sory! Save Fail.";
             }
         }
+
+        public List<ServiceTiemMatch> GetAllServiceTimes()
+        {
+            return serviceTiemMatchGateway.GetAllServiceTimes();
+        }
+
+
+        public ServiceTiemMatch GetServiceTimeById(int id)
+        {
+            return serviceTiemMatchGateway.GetServiceTimeById(id);
+        }
+
+        public void UpdateServiceTimeRange(ServiceTiemMatch model)
+        {
+            serviceTiemMatchGateway.UpdateServiceTimeRange(model);
+        }
+
+        public void DeleteServiceTimeById(int id)
+        {
+            serviceTiemMatchGateway.DeleteServiceTimeById(id);
+        }
     }
 }

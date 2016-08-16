@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FastFoodResturent_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FinalResult_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InterArrivalTime" Type="Int32" />
+    <Property Name="ArrivalTime" Type="Int32" />
+    <Property Name="ServiceTime" Type="Int32" />
+    <Property Name="ServiceStartTime" Type="Int32" />
+    <Property Name="ServiceEndTime" Type="Int32" />
+    <Property Name="WaitingTime" Type="Int32" />
+    <Property Name="ServerIdelTime" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="FastFoodResturent_DBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FinalResult_Table" EntityType="Self.FinalResult_Table" />
+  </EntityContainer>
+</Schema>

@@ -19,7 +19,7 @@ namespace FastFoodResturentWebApp.Core.Gateway
         }
         public List<ServiceTiemMatch> GetAllServiceTimes()
         {
-            List<ServiceTiemMatch> interArrivalTimeMatches = new List<ServiceTiemMatch>();
+            List<ServiceTiemMatch> serviceTiemMatchsList = new List<ServiceTiemMatch>();
             Query = "SELECT * FROM ServiceTimeMatch_Table";
             Command.CommandText = Query;
             Connection.Open();
@@ -27,14 +27,59 @@ namespace FastFoodResturentWebApp.Core.Gateway
             while (Reader.Read())
             {
                 ServiceTiemMatch serviceTiemMatch = new ServiceTiemMatch();
+
+                serviceTiemMatch.Id = Convert.ToInt32(Reader["Id"]);
                 serviceTiemMatch.ServiceTiem = Convert.ToInt32(Reader["ServiceTime"]);
                 serviceTiemMatch.MinRange = Convert.ToInt32(Reader["MinRange"]);
                 serviceTiemMatch.MaxRange = Convert.ToInt32(Reader["MaxRange"]);
-                interArrivalTimeMatches.Add(serviceTiemMatch);
+                serviceTiemMatchsList.Add(serviceTiemMatch);
             }
             Reader.Close();
             Connection.Close();
-            return interArrivalTimeMatches;
+            return serviceTiemMatchsList;
+        }
+
+
+        public ServiceTiemMatch GetServiceTimeById(int id)
+        {
+            ServiceTiemMatch serviceTiemMatch = new ServiceTiemMatch();
+            Query = "SELECT * FROM ServiceTimeMatch_Table Where Id=" + id + " ";
+            Command.CommandText = Query;
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+            if (Reader.Read())
+            {
+
+                serviceTiemMatch.Id = Convert.ToInt32(Reader["Id"]);
+                serviceTiemMatch.ServiceTiem = Convert.ToInt32(Reader["ServiceTime"]);
+                serviceTiemMatch.MinRange = Convert.ToInt32(Reader["MinRange"]);
+                serviceTiemMatch.MaxRange = Convert.ToInt32(Reader["MaxRange"]);
+
+                Reader.Close();
+                Connection.Close();
+            }
+            return serviceTiemMatch;
+        }
+
+        public void UpdateServiceTimeRange(ServiceTiemMatch model)
+        {
+            Query = "UPDATE ServiceTimeMatch_Table SET ServiceTime=" + model.ServiceTiem +
+                     ",MaxRange=" + model.MaxRange + ",MinRange=" + model.MinRange +
+                     " WHERE Id=" + model.Id + " ";
+            Command.CommandText = Query;
+            Connection.Open();
+            Command.ExecuteNonQuery();
+            Connection.Close();
+           
+        }
+
+        public void DeleteServiceTimeById(int id)
+        {
+            Query = "Delete from ServiceTimeMatch_Table Where Id=" + id + " ";
+            Command.CommandText = Query;
+            Connection.Open();
+            Command.ExecuteNonQuery();
+            Connection.Close();
         }
     }
 }

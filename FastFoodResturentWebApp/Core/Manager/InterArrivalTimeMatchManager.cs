@@ -22,5 +22,25 @@ namespace FastFoodResturentWebApp.Core.Manager
             }
             
         }
+
+        public List<InterArrivalTimeMatch> GetAllInterArrivalTimes()
+        {
+            return interArrivalTimeMatchGateway.GetAllInterArrivalTimes();
+        }
+
+        public int UpdateInterArrivalTimeRange(InterArrivalTimeMatch interArrivalTimeMatch)
+        {
+            return interArrivalTimeMatchGateway.UpdateInterArrivalTimeRange(interArrivalTimeMatch);
+        }
+
+        public InterArrivalTimeMatch GetInterArrivalTimeById(int id)
+        {
+            return interArrivalTimeMatchGateway.GetInterArrivalTimeById(id);
+        }
+
+        public void DeleteInterArrivalTimeById(int id)
+        {
+             interArrivalTimeMatchGateway.DeleteInterArrivalTimeById(id);
+        }
     }
 }

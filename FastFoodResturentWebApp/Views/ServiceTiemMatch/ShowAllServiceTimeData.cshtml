@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FastFoodResturentWebApp.Models.ServiceTiemMatch>
+
+@{
+    ViewBag.Title = "ShowAllServiceTimeData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Service Time Range</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Insert","ServiceTiemMatch")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceTiem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxRange)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceTiem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxRange)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

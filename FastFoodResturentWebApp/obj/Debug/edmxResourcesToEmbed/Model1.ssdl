@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FastFoodResturent_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FinalResult_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterArrivalTime" Type="int" />
+    <Property Name="ArrivalTime" Type="int" />
+    <Property Name="ServiceTime" Type="int" />
+    <Property Name="ServiceStartTime" Type="int" />
+    <Property Name="ServiceEndTime" Type="int" />
+    <Property Name="WaitingTime" Type="int" />
+    <Property Name="ServerIdelTime" Type="int" />
+  </EntityType>
+  <EntityContainer Name="FastFoodResturent_DBModelStoreContainer">
+    <EntitySet Name="FinalResult_Table" EntityType="Self.FinalResult_Table" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

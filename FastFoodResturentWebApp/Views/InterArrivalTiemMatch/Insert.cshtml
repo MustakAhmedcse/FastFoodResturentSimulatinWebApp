@@ -1,43 +1,44 @@
 ﻿@model FastFoodResturentWebApp.Models.InterArrivalTimeMatch
 
 @{
-    ViewBag.Title = "Insert";
+    ViewBag.Title = "Insert Random Degit Range";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .field-validation-error {
+        font-style: italic;
+    }
+</style>
+<h2>Inter Arrival Time Random Digit Range</h2>
 
-<h2>Insert</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-
+    @*@Html.AntiForgeryToken()*@
+    @*@Html.ValidationSummary()*@
     <div class="form-horizontal">
-        <h4>InterArrivalTimeMatch</h4>
+        <h4>User Input Lable</h4>
         <hr />
-        @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InterArrivalTime, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.InterArrivalTime, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.InterArrivalTime)
-                @Html.ValidationMessageFor(model => model.InterArrivalTime)
+                @Html.TextBoxFor(m => m.InterArrivalTime, new { @class = "form-control", @placeholder = "Time" })
+                @Html.ValidationMessageFor(m => m.InterArrivalTime)
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.MinRange, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.MinRange, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MinRange)
-                @Html.ValidationMessageFor(model => model.MinRange)
+                @Html.TextBoxFor(m => m.MinRange, new { @class = "form-control", @placeholder = "From" })
+                @Html.ValidationMessageFor(m => m.MinRange)
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.MaxRange, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.MaxRange, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaxRange)
-                @Html.ValidationMessageFor(model => model.MaxRange)
+                @Html.TextBoxFor(m => m.MaxRange, new { @class = "form-control", @placeholder = "To" })
+                @Html.ValidationMessageFor(m => m.MaxRange)
             </div>
         </div>
 
@@ -51,9 +52,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Show Data", "ShowAllInterArrivalData", "InterArrivalTiemMatch")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

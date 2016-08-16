@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FastFoodResturentWebApp.Models.InterArrivalTimeMatch>
+
+@{
+    ViewBag.Title = "ShowAllInterArrivalData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inter Arrival Time Range</h2>
+
+<p>
+    @Html.ActionLink("Create New Range", "Insert","InterArrivalTiemMatch")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InterArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxRange)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterArrivalTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxRange)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
